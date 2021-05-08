@@ -83,7 +83,7 @@ const Illustration = () => {
                     <Row>
                         {dummy.map((category) => (
                             <Col>
-                                <Link to="/electronics">
+                                <Link to="/category">
                                     <CardCat key={category.id}>
                                         <img alt="device" src={device}/>
                                         <p>{category.category}</p>
