@@ -39,7 +39,7 @@ export const getCategoryData = async (categoryName) => {
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
-export const addCategoryData = async (data) => {
+export const addCategoryData = async (data, image) => {
   console.log(data);
   const specifications = data.specifics.split(",");
   const docRef = await addDoc(
@@ -54,6 +54,7 @@ export const addCategoryData = async (data) => {
       rented: data.rented,
       specifics: specifications,
       type: data.type,
+      product_image: [data.product_image],
     }
   );
   console.log("Document written with ID: ", docRef.id);

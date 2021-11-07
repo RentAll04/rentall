@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 
-import { Form, Input, Button, Select } from "antd";
+import { getStorage, ref } from "firebase/storage";
+
+import { Form, Input, Button, Select, Upload } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
 import { addCategoryData } from "../firebase/config";
-const { Option } = Select;
+import SkeletonImage from "antd/lib/skeleton/Image";
+const { Dragger } = Upload;
+
+const storage = getStorage();
 
 const Data = () => {
   const [form] = Form.useForm();
 
-  const [categoryName, setCategoryName] = useState("");
-
-  const handleChange = (value) => {
-    setCategoryName(value);
-  };
-
   const handleOk = (values) => {
-    console.log(values);
-    console.log(values.specifics.split(","));
+    const product_image = ref(storage, values.product_image);
     addCategoryData(values);
     form.setFieldsValue({
       categoryName: "",
@@ -28,6 +27,7 @@ const Data = () => {
       rented: "",
       specifics: "",
       type: "",
+      product_image: "",
     });
   };
   return (
@@ -173,6 +173,19 @@ const Data = () => {
             ]}
           >
             <Input.TextArea rows={2} />
+          </Form.Item>
+
+          <Form.Item
+            style={{ marginTop: "28px" }}
+            name="product_image"
+            label="Product Images"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <input type="file" id="myFile" name="filename"></input>
           </Form.Item>
 
           <Button htmlType="submit" size="large">
