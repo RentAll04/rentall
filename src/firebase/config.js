@@ -1,17 +1,7 @@
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, arrayUnion } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// import "firebase/auth";
-// import "firebase/firestore";
-// import "firebase/storage";
-// import "firebase/functions";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyD8PP2i3T5TNW25vvt71HADVrwh6mRZhWc",
   authDomain: "rentall-3e4d1.firebaseapp.com",
@@ -21,14 +11,10 @@ const firebaseConfig = {
   appId: "1:959648292929:web:8db44fd4bf5af026ab66c0",
   measurementId: "G-HKGJ8LGJJS",
 };
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
-
-// if (!firebase.apps.length) {
-//   firebase.initializeApp(firebaseConfig);
-// }
 
 export const getCategoryData = async (categoryName) => {
   console.log(categoryName);
@@ -59,3 +45,5 @@ export const addCategoryData = async (data, image) => {
   );
   console.log("Document written with ID: ", docRef.id);
 };
+
+
