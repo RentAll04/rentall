@@ -2,6 +2,8 @@ import { collection, getDocs, addDoc, arrayUnion } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+import * as fs from "fs";
+
 const firebaseConfig = {
   apiKey: "AIzaSyD8PP2i3T5TNW25vvt71HADVrwh6mRZhWc",
   authDomain: "rentall-3e4d1.firebaseapp.com",
@@ -45,5 +47,3 @@ export const addCategoryData = async (data, image) => {
   );
   console.log("Document written with ID: ", docRef.id);
 };
-
-

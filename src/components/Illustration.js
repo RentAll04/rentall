@@ -21,21 +21,46 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import CategoryCard from "./CategoryCard";
 
 const dummy = [
-  { id: "1", category: "Electronics" },
-  { id: "2", category: "Furniture" },
-  { id: "3", category: "Clothes" },
-  { id: "4", category: "Sports" },
-  { id: "5", category: "Medical" },
-  { id: "6", category: "Accessories" },
+  {
+    id: "1",
+    category: "Electronics",
+    image: "https://cdn-icons-png.flaticon.com/512/2777/2777142.png",
+  },
+  {
+    id: "2",
+    category: "Furniture",
+    image: "https://cdn-icons-png.flaticon.com/512/1606/1606197.png",
+  },
+  {
+    id: "3",
+    category: "Clothes",
+    image: "https://cdn-icons-png.flaticon.com/512/2789/2789609.png",
+  },
+  {
+    id: "4",
+    category: "Sports",
+    image: "https://cdn-icons-png.flaticon.com/512/4163/4163679.png",
+  },
+  {
+    id: "5",
+    category: "Medical",
+    image: "https://cdn-icons-png.flaticon.com/512/687/687529.png",
+  },
+  {
+    id: "6",
+    category: "Accessories",
+    image: "https://cdn-icons-png.flaticon.com/512/775/775385.png",
+  },
 ];
 
 const CardData = [
-  { id: "1", category: "Category1" },
-  { id: "2", category: "Category2" },
-  { id: "3", category: "Category3" },
-  { id: "4", category: "Category4" },
+  { id: "1", category: "Category1", image: "" },
+  { id: "2", category: "Category2", images: "" },
+  { id: "3", category: "Category3", images: "" },
+  { id: "4", category: "Category4", images: "" },
 ];
 
 const Category = styled.div`
@@ -69,10 +94,32 @@ const Illustration = () => {
       <Container>
         <div style={{ paddingTop: "220px", margin: "auto" }}>
           <Row>
-            <Col style={{ alignItems: "center" }} md={5}>
-              <img src={quote} alt="illustration" />
+            <Col style={{ alignItems: "center" }} lg={5}>
+              {/* <img src={quote} alt="illustration" /> */}
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "bold",
+                  fontSize: "40px",
+                  color: "#1A2263",
+                }}
+              >
+                Be a Part <br />
+                of the
+                <br />
+                <span
+                  style={{
+                    fontFamily: "Montserrat",
+                    fontWeight: "bold",
+                    fontSize: "60px",
+                    color: "rgba(255, 0, 0, 1)",
+                  }}
+                >
+                  Rentalution
+                </span>
+              </p>
             </Col>
-            <Col md={7}>
+            <Col lg={7}>
               <img src={illustration} alt="illustration" />
             </Col>
           </Row>
@@ -84,7 +131,11 @@ const Illustration = () => {
               <Col>
                 <Link to={`/category/${category.category}`}>
                   <CardCat key={category.id}>
-                    <img alt="device" src={device} />
+                    <img
+                      style={{ width: "40%", height: "50%" }}
+                      alt="device"
+                      src={category.image}
+                    />
                     <p
                       style={{
                         marginTop: "8px",
@@ -110,11 +161,14 @@ const Illustration = () => {
             <Row>
               {CardData.map((category) => (
                 <Col md={3}>
-                  <img
-                    key={category.id}
-                    alt={category.category}
-                    src={RentCard}
-                  />
+                  <Link to={`/category/${category.category}/${category.id}`}>
+                    <CategoryCard key={category.id} details={category} />
+                    {/* <img
+                      key={category.id}
+                      alt={category.category}
+                      src={RentCard}
+                    /> */}
+                  </Link>
                 </Col>
               ))}
             </Row>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
 
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
@@ -24,6 +25,7 @@ import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import Slider from "@material-ui/core/Slider";
 import { getCategory } from "../redux/categories/actionReducer";
+import CategoryCard from "./CategoryCard";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -50,17 +52,19 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-const CardData = [
-  { id: "1", category: "Category1" },
-  { id: "2", category: "Category2" },
-  { id: "3", category: "Category3" },
-  { id: "4", category: "Category4" },
-  { id: "5", category: "Category4" },
-  { id: "6", category: "Category4" },
-  { id: "7", category: "Category4" },
-  { id: "8", category: "Category4" },
-  { id: "9", category: "Category4" },
-];
+const Title = styled.p`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  /* Dark Blue */
+  color: #1a2263;
+  text-decoration: underline linear-gradient(90deg, #df6464 0%, #76a0e6 100%);
+`;
 
 const Category = () => {
   const match = useRouteMatch();
@@ -84,13 +88,11 @@ const Category = () => {
     });
   };
 
-  console.log(category);
   useEffect(() => {
     const name = match.params.category;
     dispatch(getCategory(name.toLowerCase()));
   }, []);
 
-  console.log(category);
   return (
     <>
       <section style={{ marginTop: "100px", padding: "20px" }}>
@@ -102,7 +104,10 @@ const Category = () => {
       <Container>
         <section style={{ position: "relative" }}>
           <div>
-            <img src={tag} alt="tag" />
+            <div style={{ position: "relative" }}>
+              <Title>{match.params.category}</Title>
+            </div>
+
             <FormControl
               style={{ position: "absolute", right: "0" }}
               variant="outlined"
@@ -191,10 +196,13 @@ const Category = () => {
             </Col>
 
             <Col md={9}>
-              <Row>
-                {category?.map((category) => (
+              <Row style={{ marginTop: "60px" }}>
+                {category?.map((cat) => (
                   <Col md={4}>
-                    <img key={category.id} alt={category.name} src={RentCard} />
+                    <Link to={`/category/${match.params.category}/${cat.id}`}>
+                      {/* <img key={cat.id} alt={cat.name} src={RentCard} /> */}
+                      <CategoryCard key={cat.id} details={cat} />
+                    </Link>
                   </Col>
                 ))}
               </Row>

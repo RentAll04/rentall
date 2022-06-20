@@ -86,7 +86,9 @@ const Navbar = () => {
           </div>
         </Col>
         <Col style={{ display: "inline-flex", placeItems: "center" }} md={3}>
-          <LogIn>Log In/SignUp</LogIn>
+          <Link to="/sign-up">
+            <LogIn>Log In/SignUp</LogIn>
+          </Link>
         </Col>
       </Row>
     </Nav>
